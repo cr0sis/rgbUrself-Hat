@@ -9,7 +9,7 @@ I'm using streamlabs as my chat-bot and backend command manager but you can use 
 
 You need the Yeelight library for the Python bot (pip/pip3 install yeelight)
 
-You also need the IRCClient bot (url at the top of RGBHat.ino script) library
+You also need the IRCClient bot (url at the top of RGBHat.ino script) library for arduino IDE
 
 
 
