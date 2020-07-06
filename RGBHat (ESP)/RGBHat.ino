@@ -1,25 +1,80 @@
+/*******************************************************************
+   Connect to Twtich Chat with a Bot
+   Created with code from TheOtherLoneStar (https://www.twitch.tv/theotherlonestar)
+   and https://github.com/fredimachado/ArduinoIRC
+   By cr0sis (https://cr0s.is) (https://github.com/cr0sis)
+ *******************************************************************/
+
+#include <ESP8266WiFi.h>          
+#include <IRCClient.h>
 #include <FastLED.h>
-#include "ESP_Wahaj.h"
 #define NUM_LEDS 19
-#define DATA_PIN 1
+#define DATA_PIN 2
 CRGB leds[NUM_LEDS];
-String path = "nothing";
-int pwm = 255;
+//define your default values here, if there are different values in config.json, they are overwritten.
 
+#define IRC_SERVER   "irc.chat.twitch.tv"
+#define IRC_PORT     6667
 
+//------- Replace the following! ------
+char ssid[] = "*********";       // your network SSID (name)
+char password[] = "*******";  // your network key
+
+//The name of the channel that you want the bot to join
+const String twitchChannelName = "cr0sis";
+
+//The name that you want the bot to have
+#define TWITCH_BOT_NAME "cr0sbot"
+
+//OAuth Key for your twitch bot
+// https://twitchapps.com/tmi/
+#define TWITCH_OAUTH_TOKEN "*****"
+
+//------------------------------
+
+String ircChannel = "";
+
+WiFiClient wiFiClient;
+IRCClient client(IRC_SERVER, IRC_PORT, wiFiClient);
+
+// put your setup code here, to run once:
 void setup() {
+
   FastLED.addLeds<WS2811, DATA_PIN, GRB>(leds, NUM_LEDS);
   Serial.begin(9600);
-  start("TALKTALK80D321","******);  // Wifi details connect to
-}
 
+  Serial.println();
+
+  // Set WiFi to station mode and disconnect from an AP if it was Previously
+  // connected
+  WiFi.mode(WIFI_STA);
+  WiFi.disconnect();
+  delay(100);
+
+  // Attempt to connect to Wifi network:
+  Serial.print("Connecting Wifi: ");
+  Serial.println(ssid);
+  WiFi.begin(ssid, password);
+  while (WiFi.status() != WL_CONNECTED) {
+    Serial.print(".");
+    delay(500);
+  }
+  Serial.println("");
+  Serial.println("WiFi connected");
+  Serial.println("IP address: ");
+  IPAddress ip = WiFi.localIP();
+  Serial.println(ip);
+
+  ircChannel = "#" + twitchChannelName;
+
+  client.setCallback(callback);
+}
 
 void fadeall() {
   for (int i = 0; i < NUM_LEDS; i++) {
     leds[i].nscale8(195);
   }
 }
-
 
 void rainbow() {
   static uint8_t hue = 0;
@@ -50,30 +105,46 @@ void rainbow() {
 
 
 void loop() {
-  //waitUntilNewReq();  //Waits until a new request from python come
+  
+  // Try to connect to chat. If it loses connection try again
+  if (!client.connected()) {
+    Serial.println("Attempting to connect to " + ircChannel );
+    // Attempt to connect
+    // Second param is not needed by Twtich
+    if (client.connect(TWITCH_BOT_NAME, "", TWITCH_OAUTH_TOKEN)) {
+      client.sendRaw("JOIN " + ircChannel);
+      Serial.println("connected and ready to rock");
+      sendTwitchMessage("Ready to go Boss!");
+      
+    } else {
+      Serial.println("failed... try again in 5 seconds");
+      // Wait 5 seconds before retrying
+      delay(5000);
+    }
+    return;
+  }
   rainbow();
-  if (CheckNewReq() == 1)
-  {
-    //Serial.println("new request");
-    if (getPath() == "/blue") {
-      returnThisStr("blue replied");
-    }
-    else if (getPath() == "/purple") {
-      returnThisStr("purple replied");
-    }
-    else if (getPath() == "/favicon.ico") { //this happens for browsers only.
-      returnThisStr("garbage");
-    }
+  client.loop();
+  
+}
 
-    else        //here we receive data. You can receive pwm255 and the decode it to 255 and also get more variables like this
-    {
-      path = getPath();
-      Serial.println(path);   //String
-      //returnThisStr("nothing");
-      path.remove(0, 1);   //Remove slash /
-      Serial.println(path);
-      pwm = path.toInt();    //convert to int you can use toFloat()
-      Serial.println(pwm);
-    }
+void sendTwitchMessage(String message) {
+  client.sendMessage(ircChannel, message);
+}
+
+
+void callback(IRCMessage ircMessage) {
+  //Serial.println("In CallBack");
+
+  if (ircMessage.command == "PRIVMSG" && ircMessage.text[0] != '\001') {
+    //Serial.println("Passed private message.");
+    ircMessage.nick.toUpperCase();
+
+    String message("<" + ircMessage.nick + "> " + ircMessage.text);
+
+    //prints chat to serial
+    Serial.println(message);
+
+    return;
   }
 }
