@@ -27,7 +27,7 @@ The RGBHat.ino script will begin directly after uploading and print "Ready to go
 
 # Why it doesn't work for me
 
-No idea
+No idea. Did you install python3 and yeelight correctly?
 
 # Donate
 
