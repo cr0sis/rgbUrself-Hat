@@ -14,6 +14,10 @@ Tune into my stream to see it in action, schedule @ https://cr0s.is/schedule.php
 
 Red, Yellow, Blue, Orange, Pink, Purple, Aqua and Green.
 
+## How can chat do this?
+
+!hat red/yellow/etc
+
 ## Why the yeelight smartbulb integration? 
 
 For bits, cheers, subs, follows, hosts, gifts and tips my main lightbulb will run a lightshow routine independant of the hat, right now the hat is not connected to these events but will be included in a future update.
