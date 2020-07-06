@@ -1,4 +1,4 @@
-# cr0light
+# rgbUrself-Hat
 A python twitch bot with Xiaomi Yeelight smartbulb notifications and NodeMCU / RGB Pixel strip and streamlabs integration for stream interaction.
 
 The two bots work independent of each other so if you only have rgb strips use RGBHat and if you only have a yeelight smartbulb just use the python bot, both can connect to IRC separately using the same bot account (grab the OAuth code from twitch and fill out the relevant section of both bots).
