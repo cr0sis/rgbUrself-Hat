@@ -33,7 +33,7 @@ No idea
 
 If my work improves your stream or you saved time coding, you can buy me a coffee =]
 
-[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](N2VPZXYRRXGN6)
+[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=N2VPZXYRRXGN6)
 
 
 
