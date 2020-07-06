@@ -14,14 +14,6 @@ def chat(sock, msg):
     """
     sock.send(("PRIVMSG {} :{}\r\n".format(config.CHAN, msg)).encode("UTF-8"))
 
-def ban(sock, user):
-    """
-    Ban a user from the current channel.
-    Keyword arguments:
-    sock -- the socket over which to send the ban command
-    user -- the user to be banned
-    """
-    chat(sock, ".ban {}".format(user))
 
 def timeout(sock, user, secs=600):
     """
