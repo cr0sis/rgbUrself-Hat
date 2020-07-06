@@ -4,10 +4,6 @@ NICK = "Yourbot"                                    # Twitch username your using
 PASS = "oauth:123456fnsdlfnwslfnslfnslfnslfn" # your Twitch OAuth token
 CHAN = "#yourchan"                              # The channel you want the bot to join. :D
 RATE = (20/30)                                # messages per seccond
-BAN_PAT = [
-    r"BAD_VVORD_HERE",
-    r"ANOTHER_NAUGHTY_VVORD_HERE" 
-]
 COMMANDS = [
     [r"!discord", "The official discord is: coming soon!"],
     [r"following", "Running lightshow routine."],
