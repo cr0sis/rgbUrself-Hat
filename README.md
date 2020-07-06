@@ -1,7 +1,3 @@
-
-[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](N2VPZXYRRXGN6)
-
-
 # rgbUrself-Hat
 
 Why hat? I wear a hat on stream with a pixel strip integrated into it that viewers can spend loyalty points to change its colour for short period of time, the Hat refers to this. This is scaleable so you can edit the amount of pixels available to your strip easily in the sketch globals. Think about your own power solution with regards to the amount of pixels in your strip. You can easily run a lot of them on USB power and run them directly from the NodeMCU Vin (acts as Vout when board is powered by usb **Boards are different, check yours**) pin but will very quickly run into issues with a lot of pixels at max brightness and full white (drawing most current).
@@ -32,6 +28,10 @@ The RGBHat.ino script will begin directly after uploading and print "Ready to go
 # Why it doesn't work for me
 
 No idea
+
+# Donate
+If my work improves your stream or you saved time coding, you can buy me a coffee =]
+[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](N2VPZXYRRXGN6)
 
 
 
