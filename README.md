@@ -16,7 +16,9 @@ Red, Yellow, Blue, Orange, Pink, Purple, Aqua and Green.
 
 ## How can chat do this?
 
-!hat red/yellow/etc
+Add a streamlabs (or other) chat command for !hat then have it's output say  {user.name} has flooped the hat to: colour
+
+Then chat can do !hat red/yellow/etc, when the nodemcu bot sees the string "flooped the hat to:" it looks for a colour after the :
 
 ## Why the yeelight smartbulb integration? 
 
