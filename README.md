@@ -12,7 +12,7 @@ I'm using streamlabs as my chat-bot and backend command manager but you can use 
 
 You need the Yeelight library for the Python bot (pip/pip3 install yeelight) and the IP address of the bulb on your network (check router or run nmap -sn 192.168.whatever.* > nmapresult.txt and check the txt file) Changing whatever to a real number, mine is 1.
 
-You also need the IRCClient bot (url at the top of RGBHat.ino script) library for arduino IDE
+You also need the IRCClient library https://github.com/fredimachado/ArduinoIRC imported into your arduino IDE
 
 
 # Running
