@@ -1,7 +1,7 @@
 /*******************************************************************
    Connect to Twtich Chat with a Bot
    Created with code from TheOtherLoneStar (https://www.twitch.tv/theotherlonestar)
-   and https://github.com/fredimachado/ArduinoIRC
+   and https://github.com/fredimachado/ArduinoIRC (YOU NEED to go here for the library IRCClient included, it is not my work so I will not host it here.)
    By cr0sis (https://cr0s.is) (https://github.com/cr0sis)
  *******************************************************************/
 
