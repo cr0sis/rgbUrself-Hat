@@ -4,7 +4,7 @@ Why hat? I wear a hat on stream with a pixel strip integrated into it that viewe
 
 What does the RGB strip lightshow look like? Think knightrider, only way more flamboyant. Tune into my stream to see it in action, schedule @ https://cr0s.is/schedule.php I am happy to field questions about this while live too.
 
-The two bots work independent of each other so if you only have rgb strips use RGBHat and if you only have a yeelight smartbulb just use the python bot, both can connect to IRC separately using the same bot account (grab the OAuth code from twitch and fill out the relevant section of both bots).
+The two bots work independent of each other so if you only have rgb strips use RGBHat and if you only have a yeelight smartbulb just use the python bot, both can connect to IRC separately using the same bot account, just grab the OAuth code from twitch and fill out the relevant section of both bots. If you only run one both you will lose some automatic chat output I have set up between the two between certain routines.
 
 I'm using streamlabs as my chat-bot and backend command manager but you can use any other bot (moobot/nightbot etc). Unless you're a very very patient person who can handle someone taking advantage I'd recommend not doing the following but you *could* edit the bot to allow anyone to freely use all your commands. 
 
