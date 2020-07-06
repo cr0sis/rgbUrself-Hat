@@ -22,7 +22,9 @@ Then chat can do !hat red/yellow/etc, when the nodemcu bot sees the string "floo
 
 ## Why the yeelight smartbulb integration? 
 
-For bits, cheers, subs, follows, hosts, gifts and tips my main lightbulb will run a lightshow routine independant of the hat, right now the hat is not connected to these events but will be included in a future update.
+For bits, cheers, subs, follows, hosts, gifts and tips my main lightbulb will run a lightshow routine independant of the hat, right now the hat is not connected to these events but will be included in a future update. 
+
+You can also change your smartbulbs with !default (max brightness/lumens) !day (100W tungston emulated bulb) !warm (40W tungston emulated bulb) !nm (night mode, very dim light)
 
 The two bots work independent of each other so if you only have rgb strips use RGBHat and if you only have a yeelight smartbulb just use the python bot, both can connect to IRC separately using the same bot account, just grab the OAuth code from twitch and fill out the relevant section of both bots. If you only run one bot you will lose some automatic chat output I have set up between the two within certain events.
 
