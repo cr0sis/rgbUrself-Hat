@@ -1,9 +1,4 @@
-/*******************************************************************
-   Connect to Twtich Chat with a Bot
-   Created with code from TheOtherLoneStar (https://www.twitch.tv/theotherlonestar)
-   and https://github.com/fredimachado/ArduinoIRC (YOU NEED to go here for the library IRCClient included, it is not my work so I will not host it here.)
-   By cr0sis (https://cr0s.is) (https://github.com/cr0sis)
- *******************************************************************/
+
 
 #include <ESP8266WiFi.h>          
 #include <IRCClient.h>
@@ -11,14 +6,15 @@
 #define NUM_LEDS 19
 #define DATA_PIN 2
 CRGB leds[NUM_LEDS];
-//define your default values here, if there are different values in config.json, they are overwritten.
 
 #define IRC_SERVER   "irc.chat.twitch.tv"
 #define IRC_PORT     6667
+// const char *colours[7] = {"Red", "Yellow", "Blue", "Orange", "Pink", "Purple", "Aqua"};
+static uint8_t huePicked = 192;
 
 //------- Replace the following! ------
-char ssid[] = "*********";       // your network SSID (name)
-char password[] = "*******";  // your network key
+char ssid[] = "***";       // your network SSID (name)
+char password[] = "***";  // your network key
 
 //The name of the channel that you want the bot to join
 const String twitchChannelName = "cr0sis";
@@ -28,7 +24,7 @@ const String twitchChannelName = "cr0sis";
 
 //OAuth Key for your twitch bot
 // https://twitchapps.com/tmi/
-#define TWITCH_OAUTH_TOKEN "*****"
+#define TWITCH_OAUTH_TOKEN "***"
 
 //------------------------------
 
@@ -103,9 +99,35 @@ void rainbow() {
   }
 }
 
+void chosen() {
+  // First slide the led in one direction
+  for (int i = 0; i < NUM_LEDS; i++) {
+    // Set the i'th led to red
+    leds[i] = CHSV(huePicked, 255, 125);
+    // Show the leds
+    FastLED.show();
+    // now that we've shown the leds, reset the i'th led to black
+    // leds[i] = CRGB::Black;
+    fadeall();
+    // Wait a little bit before we loop around and do it again
+    FastLED.delay(30);
+  }
+  for (int i = (NUM_LEDS) - 1; i >= 0; i--) {
+    // Set the i'th led to red
+    leds[i] = CHSV(huePicked, 255, 125);
+    // Show the leds
+    FastLED.show();
+    // now that we've shown the leds, reset the i'th led to black
+    // leds[i] = CRGB::Black;
+    fadeall();
+    // Wait a little bit before we loop around and do it again
+    FastLED.delay(30);
+  }
+}
+
 
 void loop() {
-  
+
   // Try to connect to chat. If it loses connection try again
   if (!client.connected()) {
     Serial.println("Attempting to connect to " + ircChannel );
@@ -115,7 +137,7 @@ void loop() {
       client.sendRaw("JOIN " + ircChannel);
       Serial.println("connected and ready to rock");
       sendTwitchMessage("Ready to go Boss!");
-      
+
     } else {
       Serial.println("failed... try again in 5 seconds");
       // Wait 5 seconds before retrying
@@ -124,7 +146,7 @@ void loop() {
     return;
   }
   client.loop();
-  rainbow();  
+  rainbow();
 }
 
 void sendTwitchMessage(String message) {
@@ -143,7 +165,42 @@ void callback(IRCMessage ircMessage) {
 
     //prints chat to serial
     Serial.println(message);
-
-    return;
-  }
+    if (ircMessage.text.indexOf("flooped the hat to:") > 0)
+      String newColour = getValue(ircMessage.text, ': ', 1);
+    if newColour = blue {
+    huePicked = 160;
+    chosen();
+    } else {
+      if newColour = purple {
+      huePicked = 192;
+      chosen();
+      } else {
+        if newColour = red {
+        huePicked = 0;
+        chosen();
+        } else {
+          if newColour = pink {
+          huePicked = 224;
+          chosen();
+          } else {
+            if newColour = orange {
+            huePicked = 32;
+            chosen();
+            } else {
+              if newColour = yellow {
+              huePicked = 64;
+              chosen();
+              } else {
+                if newColour = aqua {
+                huePicked = 128;
+                chosen();
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+return;
+}
 }
