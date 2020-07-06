@@ -1,3 +1,10 @@
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<input type="hidden" name="cmd" value="_s-xclick" />
+<input type="hidden" name="hosted_button_id" value="N2VPZXYRRXGN6" />
+<input type="image" src="https://www.paypalobjects.com/en_GB/i/btn/btn_donate_SM.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+<img alt="" border="0" src="https://www.paypal.com/en_GB/i/scr/pixel.gif" width="1" height="1" />
+</form>
+
 # rgbUrself-Hat
 
 Why hat? I wear a hat on stream with a pixel strip integrated into it that viewers can spend loyalty points to change its colour for short period of time, the Hat refers to this. This is scaleable so you can edit the amount of pixels available to your strip easily in the sketch globals. Think about your own power solution with regards to the amount of pixels in your strip. You can easily run a lot of them on USB power and run them directly from the NodeMCU Vin (acts as Vout when board is powered by usb **Boards are different, check yours**) pin but will very quickly run into issues with a lot of pixels at max brightness and full white (drawing most current).
