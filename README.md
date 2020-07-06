@@ -36,6 +36,9 @@ You need the Yeelight library for the Python bot `pip/pip3 install yeelight` and
 
 You also need the IRCClient library https://github.com/fredimachado/ArduinoIRC/tree/master/src imported into your arduino IDE
 
+And last but not least, using your streamlabs or moobot bot, you need a !hat command that outputs {user.name} flooped the hat to: {1} 
+PS. {1} = the colour, it will literally output anything the person says right now, example !hat bacon. The bot will output that you flooped the hat to: bacon and the strip will ignore your input. I plan to default run a purple routine for this eventually to prevent people wasting loyalty points.
+
 
 # Running
 
