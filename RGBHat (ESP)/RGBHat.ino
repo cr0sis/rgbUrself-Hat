@@ -123,9 +123,8 @@ void loop() {
     }
     return;
   }
-  rainbow();
   client.loop();
-  
+  rainbow();  
 }
 
 void sendTwitchMessage(String message) {
