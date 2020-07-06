@@ -14,14 +14,14 @@ I'm using streamlabs as my chat-bot and backend command manager but you can use 
 
 # Pre-requisites
 
-You need the Yeelight library for the Python bot (pip/pip3 install yeelight) and the IP address of the bulb on your network (check router or run nmap -sn 192.168.whatever.* > nmapresult.txt and check the txt file) Changing whatever to a real number, mine is 1.
+You need the Yeelight library for the Python bot `pip/pip3 install yeelight` and the IP address of the bulb on your network (check router or run `nmap -sn 192.168.whatever.* > nmapresult.txt` and check the txt file) Changing whatever to a real number, mine is 1.
 
 You also need the IRCClient library https://github.com/fredimachado/ArduinoIRC imported into your arduino IDE
 
 
 # Running
 
-Start the cr0light(Python bot) using python3 main.py (or add a @reboot crontab so you don't have manually initialise after a reboot)
+Start the cr0light(Python bot) using `python3 main.py` (or add a @reboot crontab so you don't have manually initialise after a reboot)
 
 The RGBHat.ino script will begin directly after uploading and print "Ready to go Boss!" in your channel if everything went smoothly.
 
