@@ -8,8 +8,6 @@ I wear a hat on stream with a pixel strip integrated into it that viewers can sp
 
 Think knightrider, only way more flamboyant. 
 
-Tune into my stream to see it in action, schedule @ https://cr0s.is/schedule.php I am happy to field questions about this while live too. Short demo stream (no voice so it's a bit weird) https://www.twitch.tv/videos/671704549?t=0h2m23s note to self: replace with youtube link when twitch vod deleted
-
 ## What colours can the hat be changed to from chat?
 
 Red, Yellow, Blue, Orange, Pink, Purple, Aqua and Green.
