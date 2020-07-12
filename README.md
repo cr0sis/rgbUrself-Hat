@@ -1,14 +1,12 @@
 # rgbUrself-Hat
 
-## Why hat? 
-
-I wear a hat on stream with a pixel strip integrated into it that viewers can spend loyalty points to change its colour for short period of time, the Hat refers to this. This is scaleable so you can edit the amount of pixels available to your strip easily in the sketch globals. Think about your own power solution with regards to the amount of pixels in your strip. You can easily run a lot of them on USB power and run them directly from the NodeMCU Vin (acts as Vout when board is powered by usb **Boards are different, check yours**) pin but will very quickly run into issues with a lot of pixels at max brightness and full white (drawing most current).
+This is project is scaleable so you can edit the amount of pixels available to your strip easily in the sketch globals. Think about your own power solution with regards to the amount of pixels in your strip. You can easily run a lot of them on USB power and run them directly from the NodeMCU Vin (acts as Vout when board is powered by usb **Boards are different, check yours**) pin but will very quickly run into issues with a lot of pixels at max brightness and full white (drawing most current).
 
 ## What does the RGB strip lightshow look like? 
 
 Think knightrider, only way more flamboyant. 
 
-## What colours can the hat be changed to from chat?
+## What colours can the lightstrip/hat be changed to from chat?
 
 Red, Yellow, Blue, Orange, Pink, Purple, Aqua and Green.
 
