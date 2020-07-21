@@ -13,6 +13,7 @@
 
 
 
+
 #include <ESP8266WiFi.h>
 #include <IRCClient.h>
 #include <FastLED.h>
@@ -32,8 +33,8 @@ uint8_t chosenDelay = 20;
 
 int lastPatternChangeTime = 0;
 
-char ssid[] = "*****";       // your network SSID (name)
-char password[] = "*****";  // your network key
+char ssid[] = "TALKTALK80D321";       // your network SSID (name)
+char password[] = "ERCK783H";  // your network key
 
 //The name of the channel that you want the bot to join
 const String twitchChannelName = "cr0sis";
@@ -43,7 +44,7 @@ const String twitchChannelName = "cr0sis";
 
 //OAuth Key for your twitch bot
 // https://twitchapps.com/tmi/
-#define TWITCH_OAUTH_TOKEN "oauth:jkhbkjhbjhbjhbjhbjhbjhb"
+#define TWITCH_OAUTH_TOKEN "oauth:928ph5dwv2wreb1du3b9orgpcfgyrt"
 
 //------------------------------
 
@@ -228,7 +229,7 @@ void callback(IRCMessage ircMessage) {
       newDelay.trim();
       newDelay.toLowerCase();
       Serial.println(newDelay);
-      if (newDelay == "+1") {
+      if (newDelay == "-1") {
         chosenDelay -= 1;
         sendTwitchMessage("1s removed from delay.");
         Serial.println(chosenDelay);
@@ -246,7 +247,7 @@ void callback(IRCMessage ircMessage) {
         Serial.println(chosenDelay);
         return;
       }
-      if (newDelay == "slower") {
+      if (newDelay == "+1") {
         chosenDelay += 1;
         sendTwitchMessage("1s added to delay.");
         Serial.println(chosenDelay);
@@ -257,8 +258,8 @@ void callback(IRCMessage ircMessage) {
         sendTwitchMessage("Delay bypassed. Delay = " + chosenDelay);
         return;
       }
-      if (newDelay != "faster" or "slower" or "next") {
-        sendTwitchMessage("You chose stupid, I took your points anyway. !commands for help");
+      if (newDelay != "+1" or "-1" or "+10" or "-10" or "next") {
+        sendTwitchMessage("You chose stupid , I did nothing and took your points. !commands for help");
         Serial.println(chosenDelay);
         return;
       } else {
@@ -284,4 +285,5 @@ String getValue(String data, char separator, int index) {
     }
   }
   return found > index ? data.substring(strIndex[0], strIndex[1]) : "";
+}
 }
