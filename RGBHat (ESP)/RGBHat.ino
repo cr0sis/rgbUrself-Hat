@@ -253,7 +253,7 @@ void callback(IRCMessage ircMessage) {
         return;
       }
       if (newDelay == "next") {
-        nextPattern();;
+        nextPattern();
         sendTwitchMessage("Delay bypassed. Delay = " + chosenDelay);
         return;
       }
