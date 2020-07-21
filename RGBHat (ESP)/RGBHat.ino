@@ -12,6 +12,7 @@
  *******************************************************************/
 
 
+
 #include <ESP8266WiFi.h>
 #include <IRCClient.h>
 #include <FastLED.h>
@@ -27,12 +28,12 @@ CRGB leds[NUM_LEDS];
 #define VOLTS            5
 #define MAX_MA         500
 
-uint8_t chosenDelay = 10;
+uint8_t chosenDelay = 20;
 
 int lastPatternChangeTime = 0;
 
-char ssid[] = "***";       // your network SSID (name)
-char password[] = "***";  // your network key
+char ssid[] = "*****";       // your network SSID (name)
+char password[] = "*****";  // your network key
 
 //The name of the channel that you want the bot to join
 const String twitchChannelName = "cr0sis";
@@ -42,11 +43,11 @@ const String twitchChannelName = "cr0sis";
 
 //OAuth Key for your twitch bot
 // https://twitchapps.com/tmi/
-#define TWITCH_OAUTH_TOKEN "oauth:123lfffffjjjjjfdffffkkkkkkkffff"
+#define TWITCH_OAUTH_TOKEN "oauth:928ph5dwv2wreb1du3b9orgpcfgyrt"
 
 //------------------------------
 
-String ircChannel = ""; // Don't modify me I am just being initialised
+String ircChannel = "";
 
 WiFiClient wiFiClient;
 IRCClient client(IRC_SERVER, IRC_PORT, wiFiClient);
@@ -222,26 +223,38 @@ void callback(IRCMessage ircMessage) {
     //prints chat to serial
     Serial.println(message);
    
-    if (ircMessage.text.indexOf("changed the delay:") > 0) {
+    if (ircMessage.nick == "STREAMLABS" && ircMessage.text.indexOf("changed the delay:") > 0) {
       String newDelay = getValue(ircMessage.text, ':', 1);
       newDelay.trim();
       newDelay.toLowerCase();
       Serial.println(newDelay);
-      if (newDelay == "faster") {
+      if (newDelay == "+1") {
         chosenDelay -= 1;
-        sendTwitchMessage("lets shorten the delay");
+        sendTwitchMessage("1s removed from delay.");
+        Serial.println(chosenDelay);
+        return;
+      }
+      if (newDelay == "-10") {
+        chosenDelay -= 10;
+        sendTwitchMessage("10s removed from delay.");
+        Serial.println(chosenDelay);
+        return;
+      }
+      if (newDelay == "+10") {
+        chosenDelay += 10;
+        sendTwitchMessage("10s added to delay.");
         Serial.println(chosenDelay);
         return;
       }
       if (newDelay == "slower") {
         chosenDelay += 1;
-        sendTwitchMessage("lets lengthen the delay");
+        sendTwitchMessage("1s added to delay.");
         Serial.println(chosenDelay);
         return;
       }
       if (newDelay == "next") {
         nextPattern();;
-        sendTwitchMessage("lets skip to the next pattern");
+        sendTwitchMessage("Delay bypassed. Delay = " + chosenDelay);
         return;
       }
       if (newDelay != "faster" or "slower" or "next") {
