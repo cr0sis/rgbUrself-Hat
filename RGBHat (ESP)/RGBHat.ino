@@ -11,9 +11,6 @@
    
  *******************************************************************/
 
-
-
-
 #include <ESP8266WiFi.h>
 #include <IRCClient.h>
 #include <FastLED.h>
@@ -44,7 +41,7 @@ const String twitchChannelName = "cr0sis";
 
 //OAuth Key for your twitch bot
 // https://twitchapps.com/tmi/
-#define TWITCH_OAUTH_TOKEN "oauth:dfglkndfgkjndgkjn"
+#define TWITCH_OAUTH_TOKEN "oauth:928ph5dwv2wreb1du3b9orgpcfgyrt"
 
 //------------------------------
 
@@ -111,8 +108,8 @@ void cycle()
   EVERY_N_MILLISECONDS( 20 ) {
     gHue++;  // slowly cycle the "base color" through the rainbow
   }
-  if(millis() > (lastPatternChangeTime + (chosenDelay*1000))){
-    Serial.println("running chosen routine");
+  if (millis() > (lastPatternChangeTime + (chosenDelay * 1000))) {
+    Serial.print("Current delay: ");
     Serial.println(chosenDelay);
     nextPattern();  // change patterns periodically
     lastPatternChangeTime = millis();
@@ -223,7 +220,7 @@ void callback(IRCMessage ircMessage) {
 
     //prints chat to serial
     Serial.println(message);
-   
+
     if (ircMessage.nick == "STREAMLABS" && ircMessage.text.indexOf("changed the delay:") > 0) {
       String newDelay = getValue(ircMessage.text, ':', 1);
       newDelay.trim();
@@ -231,31 +228,48 @@ void callback(IRCMessage ircMessage) {
       Serial.println(newDelay);
       if (newDelay == "-1") {
         chosenDelay -= 1;
-        sendTwitchMessage("1s removed from delay.");
-        Serial.println(chosenDelay);
-        return;
+        if (chosenDelay < 2) {
+          chosenDelay += 1;
+          sendTwitchMessage("too low, ignoring");
+          return;
+        } else {
+          sendTwitchMessage("1s removed from delay. Delay = " + String(chosenDelay));
+          Serial.println(chosenDelay);
+          return;
+        }
       }
       if (newDelay == "-10") {
         chosenDelay -= 10;
-        sendTwitchMessage("10s removed from delay.");
-        Serial.println(chosenDelay);
-        return;
+        if (chosenDelay < 2 ) {
+          chosenDelay += 10;
+          sendTwitchMessage("too low, ignoring");
+          return;
+        }
+        if (chosenDelay > 240) {
+          chosenDelay += 10;
+          sendTwitchMessage("too low, ignoring");
+          return;
+        } else {
+          sendTwitchMessage("10s removed from delay. Delay = " + String(chosenDelay));
+          Serial.println(chosenDelay);
+          return;
+        }
       }
       if (newDelay == "+10") {
         chosenDelay += 10;
-        sendTwitchMessage("10s added to delay.");
+        sendTwitchMessage("10s added to delay. Delay = " + String(chosenDelay));
         Serial.println(chosenDelay);
         return;
       }
       if (newDelay == "+1") {
         chosenDelay += 1;
-        sendTwitchMessage("1s added to delay.");
+        sendTwitchMessage("1s added to delay. Delay = " + String(chosenDelay));
         Serial.println(chosenDelay);
         return;
       }
       if (newDelay == "next") {
         nextPattern();
-        sendTwitchMessage("Delay bypassed. Delay = " + chosenDelay);
+        sendTwitchMessage("Delay bypassed. Delay = " + String(chosenDelay));
         return;
       }
       if (newDelay != "+1" or "-1" or "+10" or "-10" or "next") {
@@ -267,7 +281,7 @@ void callback(IRCMessage ircMessage) {
       }
     }
     return;
-    } else {
+  } else {
     Serial.println("wasn't a priv");
   }
 }
@@ -285,5 +299,4 @@ String getValue(String data, char separator, int index) {
     }
   }
   return found > index ? data.substring(strIndex[0], strIndex[1]) : "";
-}
 }
