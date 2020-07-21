@@ -33,8 +33,8 @@ uint8_t chosenDelay = 20;
 
 int lastPatternChangeTime = 0;
 
-char ssid[] = "TALKTALK80D321";       // your network SSID (name)
-char password[] = "ERCK783H";  // your network key
+char ssid[] = "*****";       // your network SSID (name)
+char password[] = "*****";  // your network key
 
 //The name of the channel that you want the bot to join
 const String twitchChannelName = "cr0sis";
