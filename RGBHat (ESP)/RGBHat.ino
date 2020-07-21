@@ -273,7 +273,7 @@ void callback(IRCMessage ircMessage) {
         return;
       }
       if (newDelay != "+1" or "-1" or "+10" or "-10" or "next") {
-        sendTwitchMessage("You chose stupid , I did nothing and took your points. !commands for help");
+        sendTwitchMessage("You chose stupid, I did nothing and took your points. !commands for help");
         Serial.println(chosenDelay);
         return;
       } else {
