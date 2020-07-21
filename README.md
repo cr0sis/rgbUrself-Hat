@@ -6,15 +6,17 @@ This is project is scaleable so you can edit the amount of pixels available to y
 
 Think knightrider, only way more flamboyant. 
 
-## What colours can the lightstrip/hat be changed to from chat?
+## What  can the lightstrip/hat do via chat?
 
-Red, Yellow, Blue, Orange, Pink, Purple, Aqua and Green.
+You can lengthen or shorten the delay between its default routines with !hat faster or !hat slower (changes by 1 second increments from baseline 10 seconds delay)
+
+You can also skip directly to the next routine with !hat next
 
 ## How can chat do this?
 
-Add a streamlabs (or other) chat command for !hat then have its output say  "{user.name} has flooped the hat to: colour"
+Add a streamlabs (or other) chat command for !hat then have its output say  "{user.name} changed delay: {1}"
 
-Then chat can do !hat red/yellow/etc, when the nodemcu bot sees the string "flooped the hat to:" it looks for a colour after the :
+Then chat can do !hat faster/slower/next
 
 ## Why the yeelight smartbulb integration? 
 
