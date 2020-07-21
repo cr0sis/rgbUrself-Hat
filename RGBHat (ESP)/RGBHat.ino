@@ -44,7 +44,7 @@ const String twitchChannelName = "cr0sis";
 
 //OAuth Key for your twitch bot
 // https://twitchapps.com/tmi/
-#define TWITCH_OAUTH_TOKEN "oauth:928ph5dwv2wreb1du3b9orgpcfgyrt"
+#define TWITCH_OAUTH_TOKEN "oauth:dfglkndfgkjndgkjn"
 
 //------------------------------
 
